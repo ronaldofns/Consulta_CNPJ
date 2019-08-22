@@ -1,6 +1,4 @@
-﻿
-Imports System.Net.Http
-Imports System.Windows
+﻿Imports System.Net.Http
 Imports Newtonsoft.Json
 
 Public Class Frm_CnpjReceita
@@ -8,7 +6,7 @@ Public Class Frm_CnpjReceita
         BtnConsulta.Enabled = False
         BtnConsulta.Text = "Aguarde..."
         Dim url As String
-        url = "https://www.receitaws.com.br/v1/cnpj/" & TxtCnpj.Text
+        url = "https://www.receitaws.com.br/v1/cnpj/" & TxtCnpj.Text.Replace(".", "").Replace("/", "").Replace("-", "")
         PnlProcessamento.Visible = True
         Using client = New HttpClient()
             Dim response As HttpResponseMessage = Await client.GetAsync(url)
@@ -66,7 +64,7 @@ Public Class Frm_CnpjReceita
                     Next
 
                     TxtCapitalSocial.Text = Resposta.Capital_social
-
+                    BtnImprimir.Enabled = True
                 Else
                     MsgBox(Resposta.Status & ": CNPJ inválido.")
                     LimparControles(Me)
@@ -74,6 +72,7 @@ Public Class Frm_CnpjReceita
 
             Else
                 MessageBox.Show("Falha ao obter os dados : " + response.StatusCode.ToString)
+                BtnImprimir.Enabled = False
             End If
             PnlProcessamento.Visible = False
             BtnConsulta.Text = "Consultar"
@@ -94,6 +93,7 @@ Public Class Frm_CnpjReceita
         'Tentei de varias formas pegar o controle listview por não encontrei uma forma e optei em fazer a limpeza pelo nome do controle.
         ListAtividadeSecundaria.Items.Clear()
         ListQsa.Items.Clear()
+        BtnImprimir.Enabled = False
     End Sub
 
     Private Sub BtnLimpar_Click(sender As Object, e As EventArgs) Handles BtnLimpar.Click
@@ -105,6 +105,29 @@ Public Class Frm_CnpjReceita
     End Sub
 
     Private Sub TxtCapitalSocial_TextChanged(sender As Object, e As EventArgs) Handles TxtCapitalSocial.TextChanged
+        FormataEmDecimalNoElemento(TxtCapitalSocial)
         TxtExtensoCapitalSocial.Text = NumeroToExtenso(TxtCapitalSocial.Text)
     End Sub
+
+    Private Sub BtnImprimir_Click(sender As Object, e As EventArgs) Handles BtnImprimir.Click
+        Imprimir()
+    End Sub
+
+    Public Sub FormataEmDecimalNoElemento(ByRef txt As TextBox)
+        Dim n As String = String.Empty
+        Dim v As Double = 0
+        Try
+            n = txt.Text.Replace(",", "").Replace(".", "")
+            If n.Equals("") Then n = "000"
+            n = n.PadLeft(3, "0")
+            If n.Length > 3 And n.Substring(0, 1) = "0" Then n = n.Substring(1, n.Length - 1)
+            v = Convert.ToDouble(n) / 100
+            txt.Text = String.Format("{0:N}", v)
+            txt.SelectionStart = txt.Text.Length
+        Catch ex As Exception
+            'MessageBox.Show(ex.Message, "TextBoxMoeda")
+        End Try
+    End Sub
+
+
 End Class

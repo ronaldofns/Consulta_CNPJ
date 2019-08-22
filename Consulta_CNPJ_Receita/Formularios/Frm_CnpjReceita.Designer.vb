@@ -24,6 +24,7 @@ Partial Class Frm_CnpjReceita
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_CnpjReceita))
         Me.BoxReceita = New System.Windows.Forms.GroupBox()
+        Me.BtnImprimir = New System.Windows.Forms.Button()
         Me.BtnLimpar = New System.Windows.Forms.Button()
         Me.BtnConsulta = New System.Windows.Forms.Button()
         Me.TxtCnpj = New System.Windows.Forms.TextBox()
@@ -104,6 +105,7 @@ Partial Class Frm_CnpjReceita
         '
         Me.BoxReceita.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BoxReceita.Controls.Add(Me.BtnImprimir)
         Me.BoxReceita.Controls.Add(Me.BtnLimpar)
         Me.BoxReceita.Controls.Add(Me.BtnConsulta)
         Me.BoxReceita.Controls.Add(Me.TxtCnpj)
@@ -114,6 +116,16 @@ Partial Class Frm_CnpjReceita
         Me.BoxReceita.TabIndex = 0
         Me.BoxReceita.TabStop = False
         Me.BoxReceita.Text = "Informe o CNPJ"
+        '
+        'BtnImprimir
+        '
+        Me.BtnImprimir.Enabled = False
+        Me.BtnImprimir.Location = New System.Drawing.Point(419, 32)
+        Me.BtnImprimir.Name = "BtnImprimir"
+        Me.BtnImprimir.Size = New System.Drawing.Size(122, 29)
+        Me.BtnImprimir.TabIndex = 4
+        Me.BtnImprimir.Text = "Imprimir"
+        Me.BtnImprimir.UseVisualStyleBackColor = True
         '
         'BtnLimpar
         '
@@ -601,6 +613,7 @@ Partial Class Frm_CnpjReceita
         '
         Me.ListAtividadeSecundaria.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
         Me.ListAtividadeSecundaria.FullRowSelect = True
+        Me.ListAtividadeSecundaria.HideSelection = False
         Me.ListAtividadeSecundaria.Location = New System.Drawing.Point(9, 176)
         Me.ListAtividadeSecundaria.Name = "ListAtividadeSecundaria"
         Me.ListAtividadeSecundaria.Size = New System.Drawing.Size(857, 106)
@@ -772,6 +785,7 @@ Partial Class Frm_CnpjReceita
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListQsa.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListQsa.FullRowSelect = True
+        Me.ListQsa.HideSelection = False
         Me.ListQsa.Location = New System.Drawing.Point(6, 19)
         Me.ListQsa.Name = "ListQsa"
         Me.ListQsa.Size = New System.Drawing.Size(857, 621)
@@ -894,4 +908,5 @@ Partial Class Frm_CnpjReceita
     Friend WithEvents PnlProcessamento As Panel
     Friend WithEvents Label30 As Label
     Friend WithEvents Label29 As Label
+    Friend WithEvents BtnImprimir As Button
 End Class
