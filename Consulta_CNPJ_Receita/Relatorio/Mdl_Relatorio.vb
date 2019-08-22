@@ -8,7 +8,6 @@
     Public LinhaAtual As Integer = 0
 
     Public paginaAtual As Integer = 1
-
     Public Sub Imprimir()
         'define o titulo do relatorio   
         Dim ObjPrint As New Printing.PrintDocument()

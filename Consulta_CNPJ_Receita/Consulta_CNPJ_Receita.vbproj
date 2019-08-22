@@ -14,6 +14,7 @@
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -66,6 +66,15 @@
     <ApplicationIcon>Receita-Federal.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -101,6 +110,12 @@
     <Compile Include="Classes\ClsExtra.vb" />
     <Compile Include="Classes\ClsQsa.vb" />
     <Compile Include="Classes\ClsReceita.vb" />
+    <Compile Include="Formularios\FrmCnpjReceita2.Designer.vb">
+      <DependentUpon>FrmCnpjReceita2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmCnpjReceita2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\Frm_CnpjReceita.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +142,9 @@
     <Compile Include="Relatorio\Mdl_Relatorio.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\FrmCnpjReceita2.resx">
+      <DependentUpon>FrmCnpjReceita2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Frm_CnpjReceita.resx">
       <DependentUpon>Frm_CnpjReceita.vb</DependentUpon>
     </EmbeddedResource>
